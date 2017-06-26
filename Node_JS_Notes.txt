@@ -1,0 +1,44 @@
+Node JS Notes
+	Modules:
+		- same as Javascript libraries that can be used. Most of them are build in
+		- to include a module, use require()
+			eg. var http = require('http');  
+					--> now your application has access to the HTTP module, and it can create the server
+		- Create own Modules
+			1. create a .js file with the module name, such as myFirstModule.js
+			2. exports can make properties and methods useable for application:
+				exports.functionName = function(params if any){
+					return value if needed;
+				}
+			3. To use the Module,
+		   		var ownModuleVariable = require('./locate module');
+		   		ownModuleVariable.functionName(params if any);
+	Web Server:
+		- createServer(), listen(port #)
+		- Add HTTP Header:
+						http.IncomingMessage object, contains many properties, such as url
+										|
+			http.createServer(function (req, res) {
+						--> can access to HTTP module and create server
+					res.writeHead(200, {'Content-type': 'text/html'});
+					res.end('Hellow World!');
+				}).listen(8080);  
+						--> listen on port 8080 on (local) host
+		- Split Query String
+			- there are build-in modules to split query string into readble parts.
+				var url = require('url');
+				var q = url.parse(req.url, true).query;
+				var year = q.year;
+				var month = q.month;
+			if you put the address:
+				http://localhost:8080/?year=2017&month=July, 
+				2017 July 
+				will show up
+	File Server:
+		- in-built modules that allows you to work with file system
+			- read files
+			- create files
+			- update file
+			- delete file
+			- rename file
+
